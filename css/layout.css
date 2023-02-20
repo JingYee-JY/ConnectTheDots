@@ -1,0 +1,412 @@
+/*Overall*/
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Londrina Solid', cursive;
+}
+
+:root {
+    --topPadding: 20px 0px;
+    --sidePadding:0px 30px;
+    --padding:30px 30px;
+    --popUpPadding:20px;
+    --backgroundColour: #F1F1F1;
+    --buttonBackgroundColor:#FBCE59;
+    --buttonTextColor:black;
+    --textBlackColor: black;
+    --textWhiteColor: white;
+    --fullsize: 100%;
+    --instructionBackgroundColor: white;
+    --gameTopBackground: #FBCE59;
+    --pointBackground:blue;
+    --popUpBackground:rgba(217, 217, 217, 0.8);
+    --popUp:blue;
+    --borderColor: black;
+    --finalPopUpBackground:green;
+    --scoreTextBackground: yellow;
+
+    /*Use if have another background or text Colour or others*/
+    --backgroundColour2: black;
+    --textOtherColor:#F1F1F1;
+    --borderColor2:#FBCE59;
+}
+
+body{
+    width: var(--fullsize);
+    height: var(--fullsize);
+    overflow: hidden;
+    position: fixed;
+    background-color: var(--backgroundColour);
+}
+
+.startPage,
+.instructionPage,
+.selectionPage,
+.popUp,
+.finalPage{
+    width: var(--fullsize);
+    height: var(--fullsize);
+    padding: var(--topPadding);
+    display: flex;
+    position: absolute;
+    align-items: center;
+    text-align: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    z-index: 10;
+    gap: 25px;
+    background-color: var(--backgroundColour);
+}
+
+.popUp,
+.finalPage{
+    z-index: 12;
+    justify-content: center;
+}
+
+.finalPage{
+    gap: 20px;
+    background-color:  var(--backgroundColour2);
+    padding: 0%;
+}
+
+.gamePage{
+    position: absolute;
+    width: var(--fullsize);
+    height: var(--fullsize);
+    z-index: 9;
+    background-color: var(--backgroundColour);
+}
+
+
+.preview,.title{
+    width: var(--fullsize);
+    height: auto;
+    padding: var(--sidePadding);
+}
+
+.title{
+    max-height: 95px;
+    width: auto;
+}
+
+.hide{
+    display: none !important;
+    visibility: hidden !important;
+}
+
+.hidden{
+    visibility: hidden !important;
+}
+
+.button{
+    width: 80%;
+    max-width: 250px;
+    text-align: center;
+    font-size: 30px;
+    border-radius: 20px;
+    padding: 15px;
+    color: var(--buttonTextColor);
+    background-color: var(--buttonBackgroundColor);
+}
+
+.play:active,.start:active,.easy:active,.normal:active,.hard:active,.again:active,.home:active{
+    animation: animate 0.2s;
+}
+
+.background,.wholeGroup{
+    width: calc(var(--fullsize) - (var(--popUpPadding) * 2));
+    max-width: 360px;
+    border-radius: 20px;
+    height: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    padding: var(--padding);
+    background-color: var(--popUp);
+    border: 15px solid var(--borderColor);
+}
+
+/*InsturctionPage*/
+.instruction,.choices{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: var(--fullsize);
+    gap: 20px;
+    padding: var(--sidePadding);
+    font-size: 36px;
+}
+
+.details{
+    width: var(--fullsize);
+    border-radius: 20px;
+    font-size: 26px;
+    font-family: 'Roboto', sans-serif !important;
+    padding: var(--topPadding);
+    background-color: var(--instructionBackgroundColor);
+}
+
+/*GamePage*/
+.top{
+    padding: var(--sidePadding);
+    padding-top: 20px;
+    margin-bottom: 30px;
+    max-height: 75px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.question,.score{
+    font-size: 36px;
+    border-radius: 10px;
+    padding: var(--sidePadding);
+    height: var(--fullsize);
+    background-color: var(--gameTopBackground);
+}
+
+.score{
+    display: flex;
+    padding: 0px;
+    justify-content: flex-end;
+}
+
+.score-count,.point{
+    padding: 0px 10px;
+}
+
+.point{
+    border-radius: 10px;
+    background-color: var(--pointBackground);
+}
+
+.game{
+    position: relative;
+    width: var(--fullsize);
+    height: var(--fullsize);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 30px;
+    padding: var(--sidePadding);
+}
+
+/*PopUp*/
+.popUp{
+    background-color: var(--popUpBackground);
+}
+
+.mark{
+    width: 35%;
+    height: auto;
+    position: relative;
+    margin-top: -75px;
+}
+
+.checkAnswer{
+    font-size: 52px;
+}
+
+.showAnswer{
+    font-size: 26px;
+    font-weight: 200;
+    margin-bottom: 10px;
+}
+
+.correctAnswer{
+    width: 50%;
+    height: auto;
+}
+
+/*FinalPage*/
+.wholeGroup{
+    background-color: var(--finalPopUpBackground);
+    border: 15px solid var(--borderColor2);
+    z-index: 12;
+    padding: 0px;
+    gap: 0px;
+    margin-top: 90px;
+}
+
+.group1{
+    margin-top: -145px;
+    display: flex;
+    width: var(--fullsize);
+    align-items: center;
+    flex-direction: column;
+}
+
+.group2{
+    padding: var(--padding);
+}
+
+.medal{
+    position: relative;
+    width: 100%;
+}
+
+.scoreText{
+    border-radius: 10px;
+    background-color: var(--scoreTextBackground);
+    margin-top: -20px;
+    padding: 10px;
+    width: 90%;
+    font-size: 46px;
+}
+
+.words1{
+    font-size: 54px;
+}
+
+.words2{
+    font-size: 26px;
+    font-weight: 300;
+}
+
+.buttons{
+    width: var(--fullsize);
+    /* max-width: 360px; */
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+/*This is the css for the second version
+if useing this change the first version css to this*/
+.group1V2{
+    margin-top: -190px;
+}
+
+.scoreTextV2{
+    margin-top: 10px;
+}
+.words1V2{
+    font-size: 28px;
+    font-weight: 400;
+}
+
+.words2V2{
+    font-size: 51px;
+    font-weight: 900;
+}
+
+/*change svg color*/
+.again, .home{
+    position: relative;
+    z-index: 12;
+}
+
+@keyframes animate{
+    0%{
+        transform: rotate(0deg) translateX(0px);
+    }
+    25%{
+        transform: rotate(-20deg) translateX(-10px);
+    }
+    50%{
+        transform: rotate(0deg) translateX(0px);
+    }
+    75%{
+        transform: rotate(20deg) translateX(10px);
+    }
+    100%{
+        transform: rotate(0deg) translateX(0px);
+    }
+}
+
+/*Rotate*/
+.rotate{
+    display: block;
+    position: fixed;
+    visibility: hidden;
+    width: 100%;
+    height: 100%;
+    z-index: -10;
+}
+
+@media (orientation:landscape) {
+    .rotate{
+        display: block;
+        position: fixed;
+        visibility:visible;
+        width: 100%;
+        height: 100%;
+        z-index: 100;
+    }
+}
+
+/*mobile*/
+@media screen and (max-width: 767px){
+    .preview{
+        max-height: 260px;
+        width: auto;
+    }
+}
+
+/*ipad*/
+@media screen and (min-width:768px) and (max-width:1023px) {
+    
+    :root {
+        --popUpPadding:30px;
+    }
+    .preview{
+        max-height: 500px;
+        width: auto;
+    }
+
+    .startPage,
+    .instructionPage,
+    .selectionPage,
+    .popUp{
+        gap: 60px;
+    }
+
+    .choices,
+    .instruction{
+        padding: 0px 120px;
+    }
+
+    /*InstructionPage*/
+    .details{
+        font-size: 32px;
+    }
+
+    /*PopUp*/
+    .mark{
+        margin-top: -85px;
+    }
+}
+
+/*laptop*/
+@media screen and (min-width:1200px){
+    body{
+        display: flex;
+        justify-content: center;
+    }
+
+    .startPage,
+    .selectionPage,
+    .gamePage,
+    .popUp,
+    .instructionPage,
+    .finalPage,
+    .rotate{
+        width: 375px !important;
+    }
+
+    .preview{
+        max-height: 350px;
+    }
+    
+    /*Rotate*/
+    .rotate{
+        z-index: -10;
+        visibility: hidden;
+    }
+}   

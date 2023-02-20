@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+    <link rel="stylesheet" type="text/css" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/layout.css">
+    <link rel="stylesheet" href="./css/edit.css">
+    <title>Connect The Dots</title>
+
+    <link rel="stylesheet" 
+    href="https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@300;400;900&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+
+    <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+	<script src="./script/wade_1.0.1.js"></script>
+</head>
+
+<body>
+
+    <div class="startPage" id="startPage">
+        <img class="title" src="./img/logo.png">
+        <img class="preview" src="./img/visual.png">
+        <div id="play" class="play button">
+            <p>PLAY</p>
+        </div>
+    </div>
+
+    <div class="selectionPage hide" id="selectionPage">   
+        <img class="title" src="./img/logo.png">
+    </div>
+    
+    <div class="instructionPage hide" id="instructionPage">
+        <img class="title" src="./img/logo.png">
+        <div class="instruction">
+            <p>How to play</p>
+            <div class="details">
+              <p>
+                Choose the correct  <br>
+                answer from the option
+              </p>
+            </div>
+        </div>
+        <div id="start" class="start button">
+            <p>START GAME</p>
+        </div>
+    </div>
+    
+    
+    <div id="container" style="border:0; width:800px; height:600px;">
+        <div id="wade_main_div" width="800" height="600" tabindex="1">
+        </div>
+    </div>
+
+    <div class="finalPage hide" id="finalPage">
+        <div class="wholeGroup">
+            <div class="group1">
+                    <img id="medal" class="medal" src="./img/win.png">
+                    <div id="scoreText" class="scoreText">
+                </div>
+            </div>
+            <div class="group2">
+                <div id="words1" class="words1">Your score</div>
+                <div id="words2" class="words2"></div>
+            </div>
+        </div>
+        <div class="buttons">
+            <img class="again roundedButton" id="again" src="./img/again.svg">
+            <img class="home roundedButton" id="home" src="./img/home.svg">
+        </div>
+    </div>
+
+    <img class="rotate" src="./img/rotate.png">
+    
+    <audio id="click" src="sound/click.wav"></audio>
+    <audio id="correct" src="./sound/correct.wav"></audio>
+    <audio id="lose" src="./sound/lose.wav"></audio>
+    <audio id="wrong" src="./sound/wrong.wav"></audio>
+    <audio id="clap" src="./sound/clap.wav"></audio>
+
+    <script src="./script/script.js"></script>
+    <script src="./script/confetti.js"></script>
+</body>
+</html>

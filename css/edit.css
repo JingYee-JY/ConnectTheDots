@@ -1,0 +1,24 @@
+/*add here for code changes*/
+
+/*Commonly Changed Items*/
+:root{
+    --backgroundColour:#D5EBF9;
+    --buttonBackgroundColor:#014598;
+    --buttonTextColor:white;
+    --textDarkBlueColor:#014598;
+    --gameTopBackground: white;
+    --backgroundColour2:#014598;
+    --scoreTextBackground:#FBCE59;
+    --borderColor2:#F25528;
+    --finalPopUpBackground:white;
+}
+
+/*SelectionPage*/
+.selectionPage{
+    background-color: transparent;
+}
+
+/*FinalPage*/
+.finalPage{
+    top: 0;
+}
