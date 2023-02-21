@@ -14,8 +14,13 @@
 }
 
 /*SelectionPage*/
-.selectionPage{
+.selectionPage,.gamePage{
     background-color: transparent;
+}
+
+/*GamePage*/
+canvas{
+    width: 100%;
 }
 
 /*FinalPage*/
