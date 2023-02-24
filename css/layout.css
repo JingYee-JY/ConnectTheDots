@@ -12,6 +12,7 @@ body{
 :root {
     --topPadding: 20px 0px;
     --sidePadding:0px 30px;
+    --instructionPadding: 20px;
     --padding:30px 30px;
     --popUpPadding:20px;
     --backgroundColour: #F1F1F1;
@@ -148,7 +149,7 @@ body{
     border-radius: 20px;
     font-size: 26px;
     font-family: 'Roboto', sans-serif !important;
-    padding: var(--topPadding);
+    padding: var(--instructionPadding);
     background-color: var(--instructionBackgroundColor);
 }
 

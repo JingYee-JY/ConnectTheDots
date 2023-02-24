@@ -18,19 +18,29 @@ App = function()
     this.createMainMenu = function()
     {
         gameState = 'mainMenu';
+        console.log(gameState)
         var screenWidth = wade.getScreenWidth();
         var screenHeight = wade.getScreenHeight();
         wade.setMinScreenSize(0, 0);
+
+        //// create background
+        var backSprite = new Sprite();
+        backSprite.setSize(screenWidth, screenHeight);
+        backSprite.setDrawFunction(wade.drawFunctions.solidFill_('#433836'));
+        var backObject = new SceneObject(backSprite);
+        wade.addSceneObject(backObject);
 
         // create level buttons in a 3x3 grid in the middle of the screen
         var gridSizeCloumns = 3;
         var gridSizeRows = 4
         var buttonSize = Math.min(screenWidth, screenHeight) / 5;
         var cellSize = buttonSize * 1.2;
+        console.log(gridSizeCloumns,gridSizeRows)
         for (var i=0; i < gridSizeCloumns; i++)
         {
             for (var j=0; j < gridSizeRows; j++)
             {
+                console.log(i,j)
                 // create a sprite for the border of the button
                 var buttonSprite = new Sprite();
                 buttonSprite.setSize(buttonSize, buttonSize);
@@ -150,8 +160,13 @@ App = function()
 
     this.onResize = function()
     {
-        if (gameState == 'mainMenu')
+        console.log(gameState)
+        if (gameState != 'mainMenu' && gameState != undefined)
         {
+            return
+        }
+        else{
+            console.log("menu")
             wade.clearScene();
             this.createMainMenu();
         }
@@ -213,13 +228,20 @@ App = function()
         this.levelData = levelData;
         gameState = 'playing';
 
+        wade.clearScene();
         var screenWidth = wade.getScreenWidth();
         var screenHeight = wade.getScreenHeight();
 
         var backgroundWidth = screenWidth / 2.5;
         var backgroundHeight = screenHeight / 15;
 
-        console.log(backgroundHeight, backgroundWidth)
+        //// create background
+        var backSprite = new Sprite();
+        backSprite.setSize(screenWidth, screenHeight);
+        backSprite.setDrawFunction(wade.drawFunctions.solidFill_('#433836'));
+        var backObject = new SceneObject(backSprite);
+        wade.addSceneObject(backObject);
+
         // create a header background
         var background = new Sprite();
         background.setSize(backgroundWidth, backgroundHeight);
@@ -228,7 +250,6 @@ App = function()
         console.log("L")
         background.setDrawFunction(function(context)
         {
-            console.log("D")
             var pos = this.getPosition();
             context.beginPath();
             context.strokeStyle = '#6EB3D2';
@@ -501,7 +522,6 @@ App = function()
             {
                 lines[currentLineId].connected  = true;
                 currentLineId = 0;
-                console.log(lines)
                 // do we have all the connections that we need?
                 for (i=1; i < lines.length; i++)
                 {
@@ -517,6 +537,8 @@ App = function()
                 setTimeout(function()
                 {
                     endGame();
+                    gameState = 'mainMenu';
+                    wade.deleteCanvases();
                 }, 1000);
             }
         }

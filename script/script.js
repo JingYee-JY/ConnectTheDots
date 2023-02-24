@@ -30,17 +30,6 @@ const scoreText = document.getElementById("scoreText")
 const levelButtons = document.querySelectorAll(".levelButton");
 const selectionPage = document.getElementById("selectionPage");
 
-//here for selection page
-let levelIndex;
-
-//here for level buttons condition
-const levels = [
-    //example of catch the flower game
-    {winCondition:5, dropSpeed:2},
-    {winCondition:10, dropSpeed:5},
-    {winCondition:20, dropSpeed:10}
-]
-
 let current;
 let addscore = 1
 let total = 5;
@@ -72,17 +61,6 @@ start.addEventListener("click", () => {
     setTimeout(() => {
         instructionPage.classList.add("hide")
     }, 200);
-})
-
-levelButtons.forEach(function(level){
-    level.addEventListener('click', () => {
-        playClickSound()
-        setTimeout(() => {
-            levelIndex = level.getAttribute("data-level") - 1
-            selectionPage.classList.add("hide")
-            instructionPage.classList.remove("hide")
-        }, 200);
-    })    
 })
 
 again.addEventListener("click", () => {
