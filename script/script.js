@@ -117,9 +117,9 @@ function endGame(){
     clap.currentTime = 0
     clap.play() 
     medal.classList.remove("hidden")
-    scoreText.textContent = "Good job!"
-    words1.innerHTML = `You did it!`
-    words2.textContent = ""
+    scoreText.textContent = "You win!"
+    words1.innerHTML = `Good job!`
+    words2.textContent = "You did it!"
     setTimeout(function(){
         confetti.start()
         setTimeout(function(){

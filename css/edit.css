@@ -2,20 +2,29 @@
 
 /*Commonly Changed Items*/
 :root{
-    --backgroundColour:#D5EBF9;
-    --buttonBackgroundColor:#014598;
+    --backgroundColour:#433836;
+    --buttonBackgroundColor:#6EB3D2;
     --buttonTextColor:white;
     --textDarkBlueColor:#014598;
     --gameTopBackground: white;
-    --backgroundColour2:#014598;
+    --backgroundColour2:#433836;
     --scoreTextBackground:#FBCE59;
-    --borderColor2:#F25528;
+    --borderColor2:#6EB3D2;
+    --scoreTextBackground:#F25528;
     --finalPopUpBackground:white;
 }
 
 /*SelectionPage*/
 .selectionPage,.gamePage{
     background-color: transparent;
+}
+
+/*InstructionPage*/
+.instruction{
+    color: var(--textWhiteColor);
+}
+.details{
+    color: var(--textBlackColor);
 }
 
 /*GamePage*/
@@ -26,4 +35,8 @@ canvas{
 /*FinalPage*/
 .finalPage{
     top: 0;
+}
+
+.scoreText{
+    color: var(--textWhiteColor);
 }

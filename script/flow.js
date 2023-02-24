@@ -1,12 +1,12 @@
 App = function()
 {
-    var colors = ['', 'green', 'red', 'blue', 'yellow', 'orange', 'purple'];
+    var colors = ['', '#F90169', '#FFF5DA', '#08AEAD', '#FBCE59', '#F25528', 'purple'];
     var currentLineId;
     var lines = [];
     var gridLines = [];
     var gameState;
     var completedLevels = 0;
-    var numberOfDots = ['', 4,4,5,6,6,6,6,6,6,6,6,6]
+    var numberOfDots = ['', 4,4,5,5,6,6,6,6,6,6,6,6]
 
     this.init = function()
     {
@@ -36,7 +36,19 @@ App = function()
                 buttonSprite.setSize(buttonSize, buttonSize);
                 var x = (i - gridSizeCloumns/2 + 0.5) * cellSize;
                 var y = (j - gridSizeCloumns/2 + 0.5) * cellSize;
-                buttonSprite.setDrawFunction(wade.drawFunctions.drawRect_('white', 3));
+                buttonSprite.setDrawFunction(function(context)
+                {
+                    var pos = this.getPosition();
+                    var radius = buttonSize;
+                    context.beginPath();
+                    context.strokeStyle = '#666666';
+                    context.lineWidth = buttonSize / 15;
+                    context.moveTo(pos.x - radius, pos.y -radius);
+                    context.roundRect(pos.x - radius/2 ,pos.y - radius/2, radius, radius, 3);
+                    context.fillStyle  ='#666666'
+                    context.fillRect(pos.x - radius/2 ,pos.y - radius/2,radius, radius)
+                    context.stroke();
+                });
 
                 // create a scene object for the button
                 var button = new SceneObject(buttonSprite, 0, x, y);
@@ -48,9 +60,21 @@ App = function()
                 {
                     // create a lock icon - a rectangle first
                     var rectangle = new Sprite();
-                    rectangle.setSize(buttonSize * 0.55, buttonSize * 0.4);
-                    rectangle.setDrawFunction(wade.drawFunctions.solidFill_('#88f'));
-                    button.addSprite(rectangle, {y: buttonSize * 0.13});
+                    rectangle.setSize(buttonSize * 0.4, buttonSize * 0.4);
+                    rectangle.setDrawFunction(function(context)
+                    {
+                        var pos = this.getPosition();
+                        var radius = buttonSize * 0.4;
+                        context.beginPath();
+                        context.strokeStyle = '#D0D0D0';
+                        context.moveTo(pos.x - radius, pos.y -radius);
+                        context.lineWidth = buttonSize / 15;
+                        context.roundRect(pos.x - radius/2 ,pos.y - radius/2, radius, radius, 3);
+                        context.fillStyle  ='#D0D0D0'
+                        context.fillRect(pos.x - radius/2 ,pos.y - radius/2,radius, radius)
+                        context.stroke();
+                    });
+                    button.addSprite(rectangle, {y: buttonSize * 0.05});
 
                     // then half a circle
                     var halfCircle = new Sprite();
@@ -58,24 +82,46 @@ App = function()
                     halfCircle.setDrawFunction(function(context)
                     {
                         var pos = this.getPosition();
-                        var radius = buttonSize / 6;
+                        var radius = buttonSize / 8;
                         var strokeStyle = context.strokeStyle;
                         var lineWidth = context.lineWidth;
                         context.beginPath();
                         context.moveTo(pos.x - radius, pos.y);
-                        context.strokeStyle = '#88f';
-                        context.lineWidth = buttonSize / 10;
+                        context.strokeStyle = '#D0D0D0';
+                        context.lineWidth = buttonSize / 15;
                         context.arc(pos.x, pos.y, radius, Math.PI, 2 * Math.PI, false);
                         context.stroke();
                         context.strokeStyle = strokeStyle;
                         context.lineWidth = lineWidth;
                     });
-                    button.addSprite(halfCircle, {y: -buttonSize  / 20});
+                    button.addSprite(halfCircle, {y: -buttonSize  / 5.5});
+
+                    // then a circle
+                    var circle = new Sprite();
+                    circle.setSize(buttonSize, buttonSize);
+                    circle.setDrawFunction(function(context)
+                    {
+                        var pos = this.getPosition();
+                        var radius = buttonSize / 25;
+                        var strokeStyle = context.strokeStyle;
+                        var lineWidth = context.lineWidth;
+                        context.beginPath();
+                        context.moveTo(pos.x - radius, pos.y);
+                        context.strokeStyle = '#666666';
+                        context.lineWidth = buttonSize / 20;
+                        context.arc(pos.x, pos.y, radius, 0, 2 * Math.PI, false);
+                        context.stroke();
+                        context.fillStyle  ='#666666'
+                        context.fillRect(pos.x - radius/2 ,pos.y - radius/2,radius, radius)
+                        context.strokeStyle = strokeStyle;
+                        context.lineWidth = lineWidth;
+                    });
+                    button.addSprite(circle, {y: buttonSize /13});
                 }
                 else
                 {
                     // add text to show which level the button is for
-                    var levelText = new TextSprite(button.levelId, (buttonSize / 2) + 'px Londrina Solid', 'blue', 'center');
+                    var levelText = new TextSprite(button.levelId, (buttonSize / 2) + 'px Londrina Solid', 'white', 'center');
                     button.addSprite(levelText, {x:0, y: buttonSize / 6});
                 }
 
@@ -97,8 +143,9 @@ App = function()
         }
 
         // tell the player what to do
-        var textSprite = new TextSprite('Choose level', (Math.min(screenWidth, screenHeight) / 17) + 'px Londrina Solid', '#88f', 'center');
+        /*var textSprite = new TextSprite('Choose level', (Math.min(screenWidth, screenHeight) / 17) + 'px Londrina Solid', 'white', 'center');
         wade.addSceneObject(new SceneObject(textSprite, 0, 0,- Math.min(screenWidth, screenHeight) / 2 + Math.min(screenWidth, screenHeight) / 10));
+        */
     };
 
     this.onResize = function()
@@ -166,13 +213,46 @@ App = function()
         this.levelData = levelData;
         gameState = 'playing';
 
+        var screenWidth = wade.getScreenWidth();
+        var screenHeight = wade.getScreenHeight();
+
+        var backgroundWidth = screenWidth / 2.5;
+        var backgroundHeight = screenHeight / 15;
+
+        console.log(backgroundHeight, backgroundWidth)
+        // create a header background
+        var background = new Sprite();
+        background.setSize(backgroundWidth, backgroundHeight);
+        var x = -(screenWidth - backgroundWidth - backgroundWidth/2) / 2;
+        var y = -(screenHeight - backgroundHeight) / 2.25;
+        console.log("L")
+        background.setDrawFunction(function(context)
+        {
+            console.log("D")
+            var pos = this.getPosition();
+            context.beginPath();
+            context.strokeStyle = '#6EB3D2';
+            context.lineWidth = 10;
+            context.moveTo(pos.x - backgroundWidth, pos.y - backgroundHeight);
+            context.roundRect(pos.x,pos.y, backgroundWidth, backgroundHeight, 3);
+            context.fillStyle  ='#6EB3D2'
+            context.fillRect(pos.x ,pos.y,backgroundWidth, backgroundHeight)
+            context.stroke();
+        });
+        var level = new SceneObject(background, 0, x, y);
+        wade.addSceneObject(level);
+
+        // add text to show which level the button is for
+        var levelText = new TextSprite("Level " + levelId, (backgroundHeight) + 'px Londrina Solid', 'white', 'center');
+        level.addSprite(levelText, {x:backgroundWidth / 2, y: backgroundHeight - 8});
+
         // create a grid
         var numCells = levelData.length;
         var minSize = Math.min(wade.getScreenWidth(), wade.getScreenHeight()) - 20;
         var cellSize = minSize / numCells;
         var gridSprite = new Sprite();
         gridSprite.setSize(minSize, minSize);
-        gridSprite.setDrawFunction(wade.drawFunctions.grid_(numCells, numCells, 'black', 3));
+        gridSprite.setDrawFunction(wade.drawFunctions.grid_(numCells, numCells, '#7A6F6D', 5));
         var grid = new SceneObject(gridSprite);
         grid.numCells = numCells;
         grid.setName('grid');
@@ -188,11 +268,11 @@ App = function()
                 if (colorId)
                 {
                     var dotSprite = new Sprite();
-                    var dotSize = cellSize * 0.9;
+                    var dotSize = cellSize * 0.7;
                     var dotPosition = this.gridToWorld(j, i);
                     dotSprite.setSize(dotSize, dotSize);
                     dotSprite.color = colors[colorId];
-                    wade.addSceneObject(new SceneObject(dotSprite, 0, dotPosition.x, dotPosition.y));
+                    wade.addSceneObject(new SceneObject(dotSprite, 0, dotPosition.x + 0.5, dotPosition.y + 0.5));
                     dotSprite.setDrawFunction(function(context)
                     {
                         var pos = this.getPosition();
@@ -234,7 +314,7 @@ App = function()
                     var lineJoin = context.lineJoin;
 
                     // set new context properties
-                    context.lineWidth = cellSize / 3;
+                    context.lineWidth = cellSize / 5;
                     context.strokeStyle = color;
                     context.lineCap = context.lineJoin = 'round';
 
