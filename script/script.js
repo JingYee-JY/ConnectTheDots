@@ -130,3 +130,7 @@ function endGame(){
 document.addEventListener('dblclick', function(event) {
     event.preventDefault();
     }, { passive: false });
+
+/*prevent right click*/
+document.addEventListener('contextmenu', event =>
+ event.preventDefault());
