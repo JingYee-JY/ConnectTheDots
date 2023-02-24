@@ -11,7 +11,8 @@ App = function()
     this.init = function()
     {
         var levelProgression = wade.retrieveLocalObject('flowLevelProgression');
-        completedLevels = (levelProgression && levelProgression.completedLevels) || 0;
+        console.log(levelProgression)
+        completedLevels = levelProgression.completedLevels;
         this.createMainMenu();
     };
 
@@ -167,6 +168,9 @@ App = function()
         }
         else{
             console.log("menu")
+            var levelProgression = wade.retrieveLocalObject('flowLevelProgression');
+            console.log(levelProgression)
+            completedLevels = levelProgression.completedLevels;
             wade.clearScene();
             this.createMainMenu();
         }
