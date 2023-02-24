@@ -1,6 +1,6 @@
 App = function()
 {
-    var colors = ['', '#F90169', '#FFF5DA', '#08AEAD', '#FBCE59', '#F25528', 'purple'];
+    var colors = ['', '#F90169', '#FFF5DA', '#08AEAD', '#FBCE59', '#F25528', '#01A27E'];
     var currentLineId;
     var lines = [];
     var gridLines = [];

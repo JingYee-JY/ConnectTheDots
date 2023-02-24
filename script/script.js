@@ -56,8 +56,6 @@ const answerBtn = document.querySelectorAll(".answerBtn");
 //here is finalV2
 const group1 = document.querySelector(".group1");
 
-wade.init('./script/flow.js');
-
 play.addEventListener("click", () => {
     playClickSound()
     setTimeout(() => {
@@ -65,8 +63,7 @@ play.addEventListener("click", () => {
         
         //use this for selection page
         selectionPage.classList.remove("hide")
-        wade.clearScene();
-        wade.app.createMainMenu();
+        wade.init('./script/flow.js');
     }, 200);
 })
 
